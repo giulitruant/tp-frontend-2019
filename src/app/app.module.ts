@@ -9,6 +9,7 @@ import { MaterialModule } from '../app/material-module';
 import { AddCompanyComponent } from './Company/Pages/add-company/add-company.component';
 import { ListCompanyComponent } from './Company/Pages/list-company/list-company.component';
 import { EditCompanyComponent } from './Company/Pages/edit-company/edit-company.component';
+import { CompanyFormComponent } from './Company/components/company-form/company-form.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EditCompanyComponent } from './Company/Pages/edit-company/edit-company.
     HomeComponent,
     AddCompanyComponent,
     ListCompanyComponent,
-    EditCompanyComponent
+    EditCompanyComponent,
+    CompanyFormComponent
   ],
   imports: [
     BrowserModule,
