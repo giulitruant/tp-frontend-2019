@@ -20,10 +20,12 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
+              "src/app.config.json",
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -88,6 +90,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "tp-frontend2020"
+    }
+  },
+  "defaultProject": "tp-frontend2020",
+  "cli": {
+    "analytics": "43c94369-cbdf-433b-8ae7-aec9a41329c1"
+  }
 }
