@@ -3,25 +3,25 @@
       <mat-icon aria-hidden="false" aria-label="home" routerLink="/">home</mat-icon>
     </span>
     <span class="fill-remaining-space"></span>
-    <button mat-button [matMenuTriggerFor]="company">Empresa</button>    
+    <button mat-button [matMenuTriggerFor]="company">Empresa</button>
     <button mat-button [matMenuTriggerFor]="driver">Lineas de colectivo</button>
     <button mat-button [matMenuTriggerFor]="busLine">Choferes</button>
-    
+
 
     <mat-menu #company="matMenu">
-        <button mat-menu-item routerLink="/article/home">Consulta de Empresas</button>
+        <button mat-menu-item routerLink="/list-company">Consulta de Empresas</button>
       </mat-menu>
-  
+
     <mat-menu #busLine="matMenu">
       <button mat-menu-item routerLink="/article/home">Consulta de Choferes</button>
     </mat-menu>
-  
+
     <mat-menu #driver="matMenu">
       <button mat-menu-item routerLink="/comment/home">Consulta Lineas de colectivo</button>
     </mat-menu>
 
 </mat-toolbar>
-  
+
   <div>
     <router-outlet></router-outlet>
   </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,16 +6,26 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './company-form.component.html',
   styleUrls: ['./company-form.component.css']
 })
-export class CompanyFormComponent implements OnInit {
+export class CompanyFormComponent implements OnChanges {
 
   @Input() data: any;
-  @Output() event = new EventEmitter();
+  @Output() eventE = new EventEmitter();
 
   form: FormGroup;
 
-  constructor() { }
+  constructor() {
 
-  ngOnInit(): void {
+  }
+
+  ngOnChanges() {
+
+
+
+  }
+
+  onSubmit(){
+    this.eventE.emit(this.data);
+
   }
 
 }

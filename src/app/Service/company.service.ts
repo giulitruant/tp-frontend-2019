@@ -18,27 +18,27 @@ export class CompanyService {
 
 
   getBusiness(){
-    return this.http.get(this.apiUrl + 'Empresa');
+    return this.http.get(this.apiUrl + 'empresa');
 
   }
 
   getCompany(id: any){
-    return this.http.get(this.apiUrl + 'Empresa' + id);
+    return this.http.get(this.apiUrl + 'empresa' + id);
 
   }
 
   addCompany(data: any){
-    return this.http.post(this.apiUrl + 'Empresa', data);
+    return this.http.post(this.apiUrl + 'empresa', data);
 
   }
 
   editCompany(data: any){
-    return this.http.put(this.apiUrl + 'Empresa', data);
+    return this.http.put(this.apiUrl + 'empresa', data);
 
   }
 
   deleteCompany(id: any){
-    return this.http.delete(this.apiUrl + 'Empresa' + id);
+    return this.http.delete(this.apiUrl + 'empresa' + id);
   }
 
 
