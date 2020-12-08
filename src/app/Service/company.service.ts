@@ -7,8 +7,9 @@ import { AppConfigService } from './app-config.service';
 })
 export class CompanyService {
 
-  private get apiUrl(){
-    return this.appConfig.getConfig().rootApiUrl;
+  get apiUrl(){
+    return this.appConfig.getConfig().rootApiUrl;    
+    
   }
 
   constructor(
@@ -18,27 +19,27 @@ export class CompanyService {
 
 
   getBusiness(){
-    return this.http.get(this.apiUrl + 'empresa');
+    return this.http.get(this.apiUrl + '/empresa');
 
   }
 
   getCompany(id: any){
-    return this.http.get(this.apiUrl + 'empresa' + id);
+    return this.http.get(this.apiUrl + '/empresa/' + id);
 
   }
 
   addCompany(data: any){
-    return this.http.post(this.apiUrl + 'empresa', data);
+    return this.http.post(this.apiUrl + '/empresa', data);
 
   }
 
   editCompany(data: any){
-    return this.http.put(this.apiUrl + 'empresa', data);
+    return this.http.put(this.apiUrl + '/empresa', data);
 
   }
 
   deleteCompany(id: any){
-    return this.http.delete(this.apiUrl + 'empresa' + id);
+    return this.http.delete(this.apiUrl + '/empresa/' + id);
   }
 
 

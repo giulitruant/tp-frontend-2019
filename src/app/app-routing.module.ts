@@ -8,11 +8,11 @@ import { EditCompanyComponent } from './Company/Pages/edit-company/edit-company.
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,    
+    // component: HomeComponent,
     children: [
       {
         path: 'company',
-        component: HomeComponent,
+        // component: HomeComponent,
         children: [
           { path: 'home', component:  ListCompanyComponent, pathMatch: 'full'},
           { path: 'edit/:id', component:  EditCompanyComponent, pathMatch: 'full'},

@@ -12,12 +12,12 @@ export class AppConfigService {
   constructor(private http: HttpClient) {
   }
 
-  loadAppConfig() {
+  loadAppConfig() {    
     return this.loadMainConfig();
 
   }
 
-  getConfig() {
+  getConfig() {    
     return this.appConfig;
 
   }
@@ -27,7 +27,7 @@ export class AppConfigService {
 
   }
 
-  private loadMainConfig() {
+  private loadMainConfig() {    
     return this.getJSON()
     .toPromise()
     .then(data => {

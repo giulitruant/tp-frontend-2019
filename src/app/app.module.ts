@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,10 @@ import { AddCompanyComponent } from './Company/Pages/add-company/add-company.com
 import { ListCompanyComponent } from './Company/Pages/list-company/list-company.component';
 import { EditCompanyComponent } from './Company/Pages/edit-company/edit-company.component';
 import { CompanyFormComponent } from './Company/components/company-form/company-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AppConfigService } from './Service/app-config.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -24,9 +28,15 @@ import { CompanyFormComponent } from './Company/components/company-form/company-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MaterialModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [
+    AppConfigService,
+    { provide: APP_INITIALIZER, useFactory: (config: AppConfigService) => () => config.loadAppConfig(), deps: [AppConfigService], multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

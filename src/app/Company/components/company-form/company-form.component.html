@@ -1,3 +1,61 @@
-<!-- <form [formGroup]="form" (ngSubmit)="onSubmit">
+<div *ngIf="data">
+<div [formGroup]="form">
 
-</form> -->
+    <div mat-dialog-content>        
+        <mat-form-field >
+          <input formControlName="Cuit"  matInput placeholder="Cuit">
+          <mat-error *ngIf="form.get('cuit')?.errors.required">
+            Field name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="RazonSocial"  matInput placeholder="Razon Social">
+            <mat-error *ngIf="form.get('razonSocial')?.errors.required">
+              Field name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="Provincia"  matInput placeholder="Provincia">
+            <mat-error *ngIf="form.get('provincia')?.errors.required">
+              Field name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="Localidad"  matInput placeholder="Localidad">
+            <mat-error *ngIf="form.get('localidad')?.errors.required">
+              Field name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="Domicilio"  matInput placeholder="Domicilio">
+            <mat-error *ngIf="form.get('domicilio')?.errors.required">
+              Field name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="Telefono"  matInput placeholder="Telefono">
+            <mat-error *ngIf="form.get('telefono')?.errors.required">
+              Field name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="Email"  matInput placeholder="Email">
+            <mat-error *ngIf="form.get('email')?.errors.required">
+              Field name is required
+            </mat-error>
+          </mat-form-field>
+
+      </div>      
+      <div mat-dialog-actions>        
+        <button mat-button (click)="cancel($event)">Cancelar</button>        
+        <button type="submit" mat-button (click)="onSubmit($event)">Guardar</button>
+      </div>
+
+</div>
+</div>

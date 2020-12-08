@@ -1,1 +1,11 @@
-<p>add-company works!</p>
+<mat-card>
+    <mat-header-cell>Edicion de Empresa</mat-header-cell>
+
+    <mat-card-content>
+        <app-company-form 
+        [data]="company"
+        (add)="onCompanyCreated($event)">
+        </app-company-form>
+    </mat-card-content>
+
+</mat-card>
