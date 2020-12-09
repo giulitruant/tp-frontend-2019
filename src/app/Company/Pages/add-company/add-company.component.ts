@@ -1,4 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MessageType } from 'src/app/Constant/info-modal-contant';
+import { InfoModalComponent } from 'src/app/info-modal/info-modal.component';
 import { CompanyService } from 'src/app/Service/company.service';
 
 @Component({
@@ -10,25 +13,45 @@ export class AddCompanyComponent implements OnInit {
 
   company: any;
 
-
   constructor(
-    private service: CompanyService
+    private service: CompanyService,
+    private dialog: InfoModalComponent,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
   }
 
   onCompanyCreated(company: any){
-    this.service.addCompany(JSON.stringify(company))
+
+    const json = {
+      Cuit: company.Cuit,
+      RazonSocial: company.RazonSocial,
+      Provincia: company.Provincia,
+      Localidad: company.Localidad,
+      Domicilio: company.Domicilio,
+      Telefono: company.Telefono,
+      Email: company.Email
+
+    }
+
+    this.service.addCompany(json)
     .toPromise()
     .then(res => {
-      console.dir(res);
-      alert('Empresa agregada con exito.');
+      if(res){
+        this.dialog.openSnackBar('Empresa agregada con exito.', MessageType.Success);
+      } else{
+        this.dialog.openSnackBar('No se pudo agregar la empresa', MessageType.Info);
+
+      }
     })
     .catch(err => {
-      alert('Ocurrio un error al guardar la empresa.');
-      console.error(err);
+      this.dialog.openSnackBar('Ocurrio un error al guardar la empresa.', MessageType.Danger);      
     });
+  }
+
+  cancel(){
+    this._location.back();
   }
 
 }

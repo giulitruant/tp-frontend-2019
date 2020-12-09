@@ -12,8 +12,6 @@ export class CompanyFormComponent implements OnChanges {
   @Input() data = null;
   @Output() submit = new EventEmitter();
   @Output() cancelEvent = new EventEmitter();
-  loading = false;
-
 
   form = new FormGroup({
     Cuit: new FormControl('', [Validators.required, Validators.maxLength(11)]),
@@ -25,9 +23,7 @@ export class CompanyFormComponent implements OnChanges {
     Email: new FormControl('', [Validators.required]),
   });
 
-  constructor() {
-
-  }
+  constructor() { }
 
   ngOnChanges() {    
     if(this.data){      
@@ -41,8 +37,7 @@ export class CompanyFormComponent implements OnChanges {
   
   }
 
-  onSubmit(){
-    debugger;
+  onSubmit(){   
 
     if(this.form.invalid){
       return;

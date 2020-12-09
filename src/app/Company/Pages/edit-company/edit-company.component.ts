@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from 'src/app/Service/company.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class EditCompanyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private service: CompanyService,
     private _location: Location
   ) { }
@@ -38,9 +39,6 @@ export class EditCompanyComponent implements OnInit {
   } 
 
   onCompanyEdition(company: any){
-    debugger;
-    
-
     const json = {
       Cuit: company.Cuit,
       RazonSocial: company.RazonSocial,
@@ -57,6 +55,7 @@ export class EditCompanyComponent implements OnInit {
     .then(res => {
       console.dir(res);
       alert('Empresa editada con exito.');
+      this.router.navigate['/company/home'];
     })
     .catch(err => {
       alert('Ocurrio un error al guardar la empresa.');

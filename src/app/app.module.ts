@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppConfigService } from './Service/app-config.service';
 import { MatIconModule } from '@angular/material/icon';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     AddCompanyComponent,
     ListCompanyComponent,
     EditCompanyComponent,
-    CompanyFormComponent
+    CompanyFormComponent,
+    InfoModalComponent
   ],
   imports: [
     BrowserModule,
