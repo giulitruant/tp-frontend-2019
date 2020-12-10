@@ -28,8 +28,7 @@ export class CompanyFormComponent implements OnChanges {
     private router: Router
   ) { }
 
-  ngOnChanges() {
-    debugger;
+  ngOnChanges() {    
     if(this.data){      
       this.setControl();
 

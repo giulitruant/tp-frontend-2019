@@ -22,7 +22,6 @@ export class AddCompanyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    debugger;
   }
 
   onCompanyCreated(company: any){
@@ -59,7 +58,6 @@ export class AddCompanyComponent implements OnInit {
   }
 
   cancel(){
-    debugger;
     this._location.back();
   }
 
