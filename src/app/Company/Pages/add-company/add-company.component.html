@@ -1,10 +1,8 @@
 <mat-card>
-    <mat-header-cell>Alta de Empresa</mat-header-cell>
+    <mat-card-title>Alta de Empresa</mat-card-title>
 
     <mat-card-content>
-        <app-company-form        
-        (submit)="onCompanyCreated($event)"
-        (cancel)="cancel()">
+        <app-company-form [data]="company" (submit)="onCompanyCreated($event)">
         </app-company-form>
     </mat-card-content>
 

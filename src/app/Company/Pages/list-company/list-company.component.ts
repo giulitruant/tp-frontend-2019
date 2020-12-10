@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/Service/company.service';
 
@@ -7,34 +10,46 @@ import { CompanyService } from 'src/app/Service/company.service';
   templateUrl: './list-company.component.html',
   styleUrls: ['./list-company.component.css']
 })
-export class ListCompanyComponent implements OnInit {
+export class ListCompanyComponent{
   data:any;
   title: string = 'Empresas';
+  dataSource: MatTableDataSource<any>;
+
+
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['Cuit', 'RazonSocial', 'Telefono', 'Email', 'actions'];
 
   constructor(
     private service: CompanyService,
     private router: Router
-  ) { }
+  ) {
+    this.config();
 
-  ngOnInit(): void {   
+   }
 
+   config(){
     this.service.getBusiness()
     .toPromise()
-    .then(res => {
-      this.data = res;
+    .then((res: any) => {
+      this.dataSource = new MatTableDataSource(res);
     })
     .catch(err => console.dir(err));
 
-  }
+   }
 
-  applyFilter(event: Event) {
+  //  ngAfterViewInit() {
+  //   // this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
+
+   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.data.paginator) {
-      this.data.paginator.firstPage();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
 

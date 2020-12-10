@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-form',
@@ -23,16 +24,19 @@ export class CompanyFormComponent implements OnChanges {
     Email: new FormControl('', [Validators.required]),
   });
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnChanges() {    
+  ngOnChanges() {
+    debugger;
     if(this.data){      
-      this.createControl();
+      this.setControl();
 
     }
   }
 
-  createControl(){    
+  setControl(){    
     this.form.patchValue(this.data);
   
   }
@@ -47,8 +51,8 @@ export class CompanyFormComponent implements OnChanges {
 
   }
 
-  cancel(event: any){
-    this.cancelEvent.emit(event);
+  cancel(){
+    this.router.navigate(['/company/home']);
   }
 
 }

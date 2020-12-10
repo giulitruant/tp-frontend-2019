@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageType } from 'src/app/Constant/info-modal-contant';
 import { InfoModalComponent } from 'src/app/info-modal/info-modal.component';
 import { CompanyService } from 'src/app/Service/company.service';
@@ -11,15 +12,17 @@ import { CompanyService } from 'src/app/Service/company.service';
 })
 export class AddCompanyComponent implements OnInit {
 
-  company: any;
+  company= null;
 
   constructor(
     private service: CompanyService,
-    private dialog: InfoModalComponent,
-    private _location: Location
+    // private dialog: InfoModalComponent,
+    private _location: Location,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    debugger;
   }
 
   onCompanyCreated(company: any){
@@ -39,18 +42,24 @@ export class AddCompanyComponent implements OnInit {
     .toPromise()
     .then(res => {
       if(res){
-        this.dialog.openSnackBar('Empresa agregada con exito.', MessageType.Success);
+        alert('Empresa agregada con exito.');
+        this.router.navigate(['/company/home']);
+        // this.dialog.openSnackBar('Empresa agregada con exito.', MessageType.Success);
       } else{
-        this.dialog.openSnackBar('No se pudo agregar la empresa', MessageType.Info);
-
+        alert('No se pudo agregar la empresa');
+        this.router.navigate(['/company/home']);
+        // this.dialog.openSnackBar('No se pudo agregar la empresa', MessageType.Info);
       }
     })
     .catch(err => {
-      this.dialog.openSnackBar('Ocurrio un error al guardar la empresa.', MessageType.Danger);      
+      alert('Ocurrio un error al guardar la empresa.');
+      this.router.navigate(['/company/home']);
+      // this.dialog.openSnackBar('Ocurrio un error al guardar la empresa.', MessageType.Danger);      
     });
   }
 
   cancel(){
+    debugger;
     this._location.back();
   }
 

@@ -4,3 +4,8 @@ export enum MessageType {
     Warning = -1,
     Danger = -99
 }
+
+export interface InfoModalData{
+    message: string;
+    actionType: MessageType;
+}
