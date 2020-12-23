@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MessageType } from 'src/app/Constant/info-modal-contant';
 import { InfoModalComponent } from 'src/app/info-modal/info-modal.component';
@@ -12,14 +13,20 @@ import { CompanyService } from 'src/app/Service/company.service';
 })
 export class AddCompanyComponent implements OnInit {
 
+  @ViewChild('InfoModalComponent') basicModal: ElementRef;
   company= null;
+  private element: any;
+  result: any;
 
   constructor(
     private service: CompanyService,
-    // private dialog: InfoModalComponent,
+    private dialog: MatDialog,
     private _location: Location,
-    private router: Router
-  ) { }
+    private router: Router,
+    private el: ElementRef
+  ) { 
+    this.element = el.nativeElement;
+  }
 
   ngOnInit(): void {
   }
@@ -59,6 +66,22 @@ export class AddCompanyComponent implements OnInit {
 
   cancel(){
     this._location.back();
+  }
+
+
+  onClick(){
+    debugger;
+    const dialogRef = this.dialog.open(InfoModalComponent, {
+      width: '250px',
+      data: {message: 'Ocurrio un error al guardar la empresa.', actionType: MessageType.Danger}
+
+    });     
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.result = result;
+    });    
+    
   }
 
 }
