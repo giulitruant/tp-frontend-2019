@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MessageType } from 'src/app/Constant/info-modal-contant';
 import { InfoModalComponent } from 'src/app/info-modal/info-modal.component';
@@ -15,18 +15,15 @@ export class AddCompanyComponent implements OnInit {
 
   @ViewChild('InfoModalComponent') basicModal: ElementRef;
   company= null;
-  private element: any;
   result: any;
+  snackBarRef: MatSnackBarRef<any>;
 
   constructor(
     private service: CompanyService,
-    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
     private _location: Location,
-    private router: Router,
-    private el: ElementRef
-  ) { 
-    this.element = el.nativeElement;
-  }
+    private router: Router    
+  ) {  }
 
   ngOnInit(): void {
   }
@@ -70,17 +67,14 @@ export class AddCompanyComponent implements OnInit {
 
 
   onClick(){
-    debugger;
-    const dialogRef = this.dialog.open(InfoModalComponent, {
-      width: '250px',
-      data: {message: 'Ocurrio un error al guardar la empresa.', actionType: MessageType.Danger}
+    debugger;      
+    
+    this.snackBar.openFromComponent(InfoModalComponent, {      
+      data: {message: 'Ocurrio un error al guardar la empresa.', actionType: 'MessageType.Danger'}, 
+      duration: 2000,
+      panelClass: ['mat-toolbar', 'mat-primary']
 
-    });     
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.result = result;
-    });    
+    }); 
     
   }
 

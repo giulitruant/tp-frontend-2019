@@ -1,3 +1,8 @@
+export interface SingleMessage{    
+    Type?: MessageType;    
+    Value:string;    
+}
+
 export enum MessageType {
     Success = 1,
     Info = 0,
