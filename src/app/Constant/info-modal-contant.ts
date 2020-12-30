@@ -1,6 +1,6 @@
-export interface SingleMessage{    
-    Type?: MessageType;    
-    Value:string;    
+export interface InfoModalData{
+    message: string;
+    actionType: MessageType;
 }
 
 export enum MessageType {
@@ -8,9 +8,4 @@ export enum MessageType {
     Info = 0,
     Warning = -1,
     Danger = -99
-}
-
-export interface InfoModalData{
-    message: string;
-    actionType: MessageType;
 }

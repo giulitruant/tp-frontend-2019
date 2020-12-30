@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatSnackBar, MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-import { MessageType, SingleMessage } from '../Constant/info-modal-contant';
+import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
+import { MessageType, InfoModalData } from '../Constant/info-modal-contant';
 
 @Component({
   selector: 'app-info-modal',
@@ -9,53 +9,50 @@ import { MessageType, SingleMessage } from '../Constant/info-modal-contant';
 })
 export class InfoModalComponent implements OnInit{
   
-  action: string;
-  color: string = 'mat-success';  
-  messages: SingleMessage;
+  color: string;
+  icon: string;  
 
-  constructor(private snackBarRef: MatSnackBarRef<InfoModalComponent>,
-    @Inject(MAT_SNACK_BAR_DATA) private data: { messages: SingleMessage }) {
-  }
+  constructor(
+    private snackBar: MatSnackBarRef<InfoModalComponent>,
+    @Inject(MAT_SNACK_BAR_DATA) public data: InfoModalData
+  ) { }  
 
-    ngOnInit(){
 
-    // switch(this.data.messages.Type){
+  ngOnInit() {        
 
-    //   case MessageType.Success:{        
-    //     this.color = 'success';
-    //     break;
-    //   }
+    switch(this.data.actionType){
+      case MessageType.Danger:
+        this.icon= 'error';
+        this.color = 'color: red';
+        break;
 
-    //   case MessageType.Info:{
-    //     this.color = 'primary';
-    //     break;
-    //   }
-
-    //   case MessageType.Warning:{
-    //     this.color = 'warning';
-    //     break;
-    //   }
-
-    //   case MessageType.Danger:{
-    //     this.color = 'danger';
-    //     break;
-    //   }
+      case MessageType.Success:
+        this.icon= 'success';
+        this.color = 'color: green';
+        break;
       
-    //   default:{
-    //     break;
-    //   }
-    // }
+      case MessageType.Info:
+        this.icon= 'info';
+        this.color = 'color: blue';
+        break;
+      
+      case MessageType.Warning:
+        this.icon= 'warning';
+        this.color = 'color: yellow';
+        break;
+
+      default:
+        this.icon= 'success';
+        this.color = 'color: green';
+        break;
+
+    }
 
     
-
-    // this.snackBarRef._open(message, this.action, {
-    //   duration:2000,
-    //   panelClass: [this.color]
-    // });
+  
   }
 
-  dismiss() {
-    this.snackBarRef.dismiss();
+  dismiss(){
+    this.snackBar.dismiss();
   }
-
 }

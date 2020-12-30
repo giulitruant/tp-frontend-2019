@@ -15,8 +15,7 @@ export class AddCompanyComponent implements OnInit {
 
   @ViewChild('InfoModalComponent') basicModal: ElementRef;
   company= null;
-  result: any;
-  snackBarRef: MatSnackBarRef<any>;
+  result: any;  
 
   constructor(
     private service: CompanyService,
@@ -45,19 +44,26 @@ export class AddCompanyComponent implements OnInit {
     .toPromise()
     .then(res => {
       if(res){
-        alert('Empresa agregada con exito.');
-        this.router.navigate(['/company/home']);
-        // this.dialog.openSnackBar('Empresa agregada con exito.', MessageType.Success);
+        this.snackBar.openFromComponent(InfoModalComponent, {
+          data: { message: 'Empresa agregada con exito.', actionType: MessageType.Success },      
+          duration: 2000      
+        });                
+        this.router.navigate(['/company/home']);        
+
       } else{
-        alert('No se pudo agregar la empresa');
+        this.snackBar.openFromComponent(InfoModalComponent, {
+          data: { message: 'No se pudo agregar la empresa', actionType: MessageType.Warning },      
+          duration: 2000      
+        });        
         this.router.navigate(['/company/home']);
-        // this.dialog.openSnackBar('No se pudo agregar la empresa', MessageType.Info);
       }
     })
     .catch(err => {
-      alert('Ocurrio un error al guardar la empresa.');
-      this.router.navigate(['/company/home']);
-      // this.dialog.openSnackBar('Ocurrio un error al guardar la empresa.', MessageType.Danger);      
+      this.snackBar.openFromComponent(InfoModalComponent, {
+        data: { message: 'Ocurrio un error al guardar la empresa.', actionType: MessageType.Danger },      
+        duration: 2000      
+      });
+      this.router.navigate(['/company/home']);      
     });
   }
 
@@ -65,17 +71,5 @@ export class AddCompanyComponent implements OnInit {
     this._location.back();
   }
 
-
-  onClick(){
-    debugger;      
-    
-    this.snackBar.openFromComponent(InfoModalComponent, {      
-      data: {message: 'Ocurrio un error al guardar la empresa.', actionType: 'MessageType.Danger'}, 
-      duration: 2000,
-      panelClass: ['mat-toolbar', 'mat-primary']
-
-    }); 
-    
-  }
 
 }
