@@ -15,20 +15,20 @@ export class AddCompanyComponent implements OnInit {
 
   @ViewChild('InfoModalComponent') basicModal: ElementRef;
   company= null;
-  result: any;  
+  result: any;
 
   constructor(
     private service: CompanyService,
     private snackBar: MatSnackBar,
     private _location: Location,
-    private router: Router    
+    private router: Router
   ) {  }
 
   ngOnInit(): void {
   }
 
   onCompanyCreated(company: any){
-
+    debugger;
     const json = {
       Cuit: company.Cuit,
       RazonSocial: company.RazonSocial,
@@ -45,25 +45,25 @@ export class AddCompanyComponent implements OnInit {
     .then(res => {
       if(res){
         this.snackBar.openFromComponent(InfoModalComponent, {
-          data: { message: 'Empresa agregada con exito.', actionType: MessageType.Success },      
-          duration: 2000      
-        });                
-        this.router.navigate(['/company/home']);        
+          data: { message: 'Empresa agregada con exito.', actionType: MessageType.Success },
+          duration: 2000
+        });
+        this.router.navigate(['/company/home']);
 
       } else{
         this.snackBar.openFromComponent(InfoModalComponent, {
-          data: { message: 'No se pudo agregar la empresa', actionType: MessageType.Warning },      
-          duration: 2000      
-        });        
+          data: { message: 'No se pudo agregar la empresa', actionType: MessageType.Warning },
+          duration: 2000
+        });
         this.router.navigate(['/company/home']);
       }
     })
     .catch(err => {
       this.snackBar.openFromComponent(InfoModalComponent, {
-        data: { message: 'Ocurrio un error al guardar la empresa.', actionType: MessageType.Danger },      
-        duration: 2000      
+        data: { message: 'Ocurrio un error al guardar la empresa.', actionType: MessageType.Danger },
+        duration: 2000
       });
-      this.router.navigate(['/company/home']);      
+      this.router.navigate(['/company/home']);
     });
   }
 

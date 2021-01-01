@@ -23,7 +23,7 @@ export class EditCompanyComponent implements OnInit {
     private snackBar: MatSnackBar,
   ) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.route.params.subscribe(param => {
       this.cuit = param['id'];
 
@@ -34,13 +34,13 @@ export class EditCompanyComponent implements OnInit {
   getConfig(cuit: any){
     this.service.getCompany(cuit)
     .toPromise()
-    .then(res => {      
+    .then(res => {
         this.company = res;
-    
+
       })
     .catch(err => console.error(err));
 
-  } 
+  }
 
   onCompanyEdition(company: any){
     const json = {
@@ -54,36 +54,38 @@ export class EditCompanyComponent implements OnInit {
 
     }
 
+    debugger;
+
     this.service.editCompany(json)
     .toPromise()
     .then(res => {
       if(res){
         this.snackBar.openFromComponent(InfoModalComponent, {
-          data: { message: 'Empresa actualizada con exito.', actionType: MessageType.Success },      
-          duration: 2000      
-        });      
+          data: { message: 'Empresa actualizada con exito.', actionType: MessageType.Success },
+          duration: 2000
+        });
         this.router.navigate(['/company/home']);
       } else{
         this.snackBar.openFromComponent(InfoModalComponent, {
-          data: { message: 'No se pudo actualizar la empresa.', actionType: MessageType.Warning },      
-          duration: 2000      
-        });      
+          data: { message: 'No se pudo actualizar la empresa.', actionType: MessageType.Warning },
+          duration: 2000
+        });
         this.router.navigate(['/company/home']);
       }
-      
+
     })
     .catch(err => {
       alert('Ocurrio un error en la edicion de la empresa.');
       this.snackBar.openFromComponent(InfoModalComponent, {
-        data: { message: 'Ocurrio un error en la edicion de la empresa.', actionType: MessageType.Danger },      
-        duration: 2000      
-      });      
-      this.router.navigate(['/company/home']); 
-      
+        data: { message: 'Ocurrio un error en la edicion de la empresa.', actionType: MessageType.Danger },
+        duration: 2000
+      });
+      this.router.navigate(['/company/home']);
+
     });
   }
 
-  cancel(){    
+  cancel(){
     this._location.back();
   }
 

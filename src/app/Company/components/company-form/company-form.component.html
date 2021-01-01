@@ -1,58 +1,65 @@
 <div [formGroup]="form">
 
-    <div mat-dialog-content>        
-        <mat-form-field>          
-          <input matInput formControlName="Cuit" placeholder="Cuit">
-          <mat-error *ngIf="form.get('Cuit')?.errors.required">
-            cuit es requerido
+    <div mat-dialog-content>
+        <mat-form-field>
+          <mat-label>Cuit</mat-label>
+          <input matInput formControlName="Cuit">
+          <mat-error *ngIf="form.get('Cuit')?.errors">
+            campo obligatorio de 11 digitos
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input formControlName="RazonSocial"  matInput placeholder="Razon Social">
-            <mat-error *ngIf="form.get('RazonSocial')?.errors.required">
-              razon social es requerido
+          <mat-label>Razon Social</mat-label>
+            <input matInput formControlName="RazonSocial">
+            <mat-error *ngIf="form.get('RazonSocial')?.errors">
+              campo requerido
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input formControlName="Provincia"  matInput placeholder="Provincia">
-            <mat-error *ngIf="form.get('Provincia')?.errors.required">
-              provincia es requerido
+            <mat-label>Provincia</mat-label>
+            <input formControlName="Provincia" matInput>
+            <mat-error *ngIf="form.get('Provincia')?.errors">
+              campo es requerido
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input formControlName="Localidad"  matInput placeholder="Localidad">
-            <mat-error *ngIf="form.get('Localidad')?.errors.required">
-              localidad is required
+            <mat-label>Localidad</mat-label>
+            <input formControlName="Localidad"  matInput>
+            <mat-error *ngIf="form.get('Localidad')?.errors">
+              campo es requerido
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input formControlName="Domicilio"  matInput placeholder="Domicilio">
-            <mat-error *ngIf="form.get('Domicilio')?.errors.required">
-              domicilio is required
+            <mat-label>Domicilio</mat-label>
+            <input formControlName="Domicilio"  matInput>
+            <mat-error *ngIf="form.get('Domicilio')?.errors">
+              campo requerido
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input formControlName="Telefono"  matInput placeholder="Telefono">
-            <mat-error *ngIf="form.get('Telefono')?.errors.required">
-              telefono is required
+            <mat-label>Telefono</mat-label>
+            <input formControlName="Telefono"  matInput>
+            <mat-error *ngIf="form.get('Telefono')?.errors">
+              campo requerido
             </mat-error>
           </mat-form-field>
 
           <mat-form-field>
-            <input formControlName="Email"  matInput placeholder="Email">
-            <mat-error *ngIf="form.get('Email')?.errors.required">
-              email is required
+            <mat-label>Email</mat-label>
+            <input formControlName="Email"  matInput>
+            <mat-error *ngIf="form.get('Email')?.errors">
+              campo requerido
             </mat-error>
           </mat-form-field>
 
-      </div>      
-      <div mat-dialog-actions class="example-button-row">        
-        <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">Guardar</button>
-        <button mat-raised-button color="primary" (click)="cancel()">Cancelar</button>        
+      </div>
+      <div mat-dialog-actions class="example-button-row">
+        <button type="submit" mat-raised-button color="primary" disabled="{{form.invalid}}" (click)="onSubmit()">Guardar</button>
+        <button mat-raised-button color="primary" (click)="cancel()">Cancelar</button>
       </div>
 </div>
