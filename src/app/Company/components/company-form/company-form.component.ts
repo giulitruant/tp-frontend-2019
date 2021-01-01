@@ -41,7 +41,6 @@ export class CompanyFormComponent implements OnChanges {
   }
 
   onSubmit(){
-    debugger;
 
     if(this.form.invalid){
       return;

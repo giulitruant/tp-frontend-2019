@@ -54,8 +54,6 @@ export class EditCompanyComponent implements OnInit {
 
     }
 
-    debugger;
-
     this.service.editCompany(json)
     .toPromise()
     .then(res => {

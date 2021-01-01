@@ -28,7 +28,6 @@ export class AddCompanyComponent implements OnInit {
   }
 
   onCompanyCreated(company: any){
-    debugger;
     const json = {
       Cuit: company.Cuit,
       RazonSocial: company.RazonSocial,
