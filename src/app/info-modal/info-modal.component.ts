@@ -48,11 +48,5 @@ export class InfoModalComponent implements OnInit{
 
     }
 
-
-
-  }
-
-  dismiss(){
-    this.snackBar.dismiss();
   }
 }

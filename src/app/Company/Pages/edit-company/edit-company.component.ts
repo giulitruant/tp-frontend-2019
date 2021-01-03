@@ -73,7 +73,6 @@ export class EditCompanyComponent implements OnInit {
 
     })
     .catch(err => {
-      alert('Ocurrio un error en la edicion de la empresa.');
       this.snackBar.openFromComponent(InfoModalComponent, {
         data: { message: 'Ocurrio un error en la edicion de la empresa.', actionType: MessageType.Danger },
         duration: 2000

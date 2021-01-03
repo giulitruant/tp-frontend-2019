@@ -12,7 +12,7 @@
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
-    
+
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- Position Column -->
@@ -20,19 +20,19 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Cuit </th>
       <td mat-cell *matCellDef="let element"> {{element.Cuit}} </td>
     </ng-container>
-  
+
     <!-- Name Column -->
     <ng-container matColumnDef="RazonSocial">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Razon Social </th>
       <td mat-cell *matCellDef="let element"> {{element.RazonSocial}} </td>
     </ng-container>
-  
+
     <!-- Weight Column -->
     <ng-container matColumnDef="Telefono">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
       <td mat-cell *matCellDef="let element"> {{element.Telefono}} </td>
     </ng-container>
-  
+
     <!-- Symbol Column -->
     <ng-container matColumnDef="Email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
@@ -40,18 +40,23 @@
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="actions" stickyEnd>
+    <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>
         </mat-header-cell>
         <mat-cell *matCellDef="let row;">
-          <button mat-icon-button type="button" 
-          (click)="edit(row.Cuit)" 
+          <!-- <button mat-icon-button type="button" style="color:red"
+          (click)="delete(row.Cuit)"
+          matTooltip="eliminar empresa">
+            <mat-icon aria-label="delete">highlight_off</mat-icon>
+          </button> -->
+          <button mat-icon-button type="button"
+          (click)="edit(row.Cuit)"
           matTooltip="editar empresa">
             <mat-icon aria-label="select">forward</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
-  
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
