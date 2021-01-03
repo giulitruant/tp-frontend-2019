@@ -24,8 +24,7 @@ export class AddCompanyComponent implements OnInit {
     private router: Router
   ) {  }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onCompanyCreated(company: any){
     const json = {
