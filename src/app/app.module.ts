@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppConfigService } from './Service/app-config.service';
 import { MatIconModule } from '@angular/material/icon';
 import { InfoModalComponent } from './info-modal/info-modal.component';
+import { ListBusLineComponent } from './BusLine/pages/list-bus-line/list-bus-line.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { InfoModalComponent } from './info-modal/info-modal.component';
     ListCompanyComponent,
     EditCompanyComponent,
     CompanyFormComponent,
-    InfoModalComponent
+    InfoModalComponent,
+    ListBusLineComponent
   ],
   imports: [
     BrowserModule,
