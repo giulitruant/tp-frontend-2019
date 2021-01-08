@@ -7,7 +7,7 @@ import { AppConfigService } from './app-config.service';
 })
 export class BusLineService {
 
-  get apiUrl(){
+  private get apiUrl(){
     return this.appConfig.getConfig().rootApiUrl;    
     
   }
