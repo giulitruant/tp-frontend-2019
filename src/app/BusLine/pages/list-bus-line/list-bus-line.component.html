@@ -6,8 +6,15 @@
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Seleccion de empresa</ng-template>
             <mat-form-field>
-                <mat-label></mat-label>
-                <input matInput placeholder="" formControlName="firstCtrl" required>
+                <mat-label>empresas</mat-label>
+                <mat-select selected (change)="onChange(selected.value)">
+                    <mat-option *ngFor="let company of business" [value]="company">
+                        {{company}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="!selected.hasError('required')">
+                    Error en la selección de empresas
+                  </mat-error>
             </mat-form-field>
             <div>
                 <button mat-button matStepperNext>Siguiente</button>
@@ -15,13 +22,8 @@
         </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" label="Lineas de colectivos">
-        <!--Table-->
-        <!-- <form [formGroup]="secondFormGroup">
-            <mat-form-field>
-                <mat-form-field>
+        <table mat-table [dataSource]="lines">
 
-                </mat-form-field>
-            </mat-form-field>
-        </form> -->
+        </table>
     </mat-step>
 </mat-horizontal-stepper>

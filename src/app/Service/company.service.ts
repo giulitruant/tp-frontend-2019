@@ -7,7 +7,7 @@ import { AppConfigService } from './app-config.service';
 })
 export class CompanyService {
 
-  get apiUrl(){
+  private get apiUrl(){
     return this.appConfig.getConfig().rootApiUrl;    
     
   }
