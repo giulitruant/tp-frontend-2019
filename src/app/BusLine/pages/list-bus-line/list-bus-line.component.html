@@ -1,29 +1,79 @@
-<button mat-mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Seleccion de empresa</ng-template>
-            <mat-form-field>
-                <mat-label>empresas</mat-label>
-                <mat-select selected (change)="onChange(selected.value)">
-                    <mat-option *ngFor="let company of business" [value]="company">
-                        {{company}}
-                    </mat-option>
-                </mat-select>
-                <mat-error *ngIf="!selected.hasError('required')">
-                    Error en la selección de empresas
-                  </mat-error>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperNext>Siguiente</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Lineas de colectivos">
-        <table mat-table [dataSource]="lines">
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="form">
+    <form [formGroup]="form">
+      <mat-toolbar color="primary">
+      <ng-template matStepLabel>seleccionar empresa</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>empresas</mat-label>
+        <mat-select formControlName="selected" (selectionChange)="onChange(form.get('selected').value)" required>
+          <mat-option *ngFor="let food of business" [value]="food.Cuit">
+            {{food.RazonSocial}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('selected')?.errors">
+          campo requerido
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="form.get('selected').value">
+        <button mat-button matStepperNext >Siguiente</button>
+      </div>
+    </mat-toolbar>
+    </form>
+  </mat-step>
+  <mat-step>
+    <div>
+      <ng-template matStepLabel>Listado de lineas de colectivos</ng-template>
 
-        </table>
-    </mat-step>
+      <mat-toolbar class="table-title full-width" color="primary">
+        Listado de lineas de colectivo
+        <span class="fill-remaining-space"></span>
+        <button mat-icon-button (click)="add()" matTooltipPosition="right" matTooltip="agregar empresa">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+      </mat-toolbar>
+
+
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="lines">
+
+        <ng-container matColumnDef="idLineaColectivo">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.idLineaColectivo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> linea </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-cell *matCellDef="let row;">
+              <button mat-icon-button type="button" (click)="edit()"
+              matTooltip="editar linea de colectivo">
+              <mat-icon aria-label="select">forward</mat-icon>
+              </button>
+            </mat-cell>
+          </mat-header-cell>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No existen lineas con "{{input.value}}"</td>
+    </tr>
+
+      </table>
+      <button mat-button color="primary" matStepperPrevious>atras</button>
+    </div>
+  </mat-step>
+  <div>
+    <button mat-button matStepperPrevious>atras</button>
+    <button mat-button (click)="stepper.reset()">Reset</button>
+  </div>
 </mat-horizontal-stepper>

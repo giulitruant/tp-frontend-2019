@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AddCompanyComponent } from './Company/Pages/add-company/add-company.component';
 import { ListCompanyComponent } from './Company/Pages/list-company/list-company.component';
 import { EditCompanyComponent } from './Company/Pages/edit-company/edit-company.component';
+import { ListBusLineComponent } from './BusLine/pages/list-bus-line/list-bus-line.component';
 
 const routes: Routes = [
   {
@@ -18,8 +19,17 @@ const routes: Routes = [
           { path: 'edit/:id', component:  EditCompanyComponent, pathMatch: 'full'},
           { path: 'add', component:  AddCompanyComponent, pathMatch: 'full'}
         ]
+      },
+      {
+        path: 'line',
+        children:[
+          { path: 'home', component: ListBusLineComponent, pathMatch: 'full' },
+          // { path: 'edit/:id', component: EditCompanyComponent, pathMatch: 'full' },
+          // { path: 'add', component: AddCompanyComponent, pathMatch: 'full' }
+        ]
       }
-    ]
+    ],
+
   },
   { path: '**', redirectTo: '' }
 ];

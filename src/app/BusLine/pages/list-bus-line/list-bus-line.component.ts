@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { MessageType } from 'src/app/Constant/info-modal-contant';
 import { InfoModalComponent } from 'src/app/info-modal/info-modal.component';
 import { BusLineService } from 'src/app/Service/bus-line.service';
@@ -12,24 +13,25 @@ import { CompanyService } from 'src/app/Service/company.service';
   styleUrls: ['./list-bus-line.component.css']
 })
 export class ListBusLineComponent implements OnInit {
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
   business: any;
-  selected : FormControl;
-  lines:any;
+  form: FormGroup;
+  selected: FormControl;
+  lines: any;
 
-  constructor( 
-    private companyService: CompanyService,    
+  displayedColumns: string[] = ['idLineaColectivo', 'nombre', 'action'];
+
+  constructor(
+    private companyService: CompanyService,
     private lineService: BusLineService,
-    private snackBar: MatSnackBar
-  ) {
-    this.selected = new FormControl('', [
-      Validators.required
-    ])
-   }
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) { }
 
-  ngOnInit(){    
+  ngOnInit(){
+    this.form = new FormGroup({
+      selected: new FormControl('', Validators.required)
+    });
+
     this.companyService.getBusiness().toPromise()
     .then(res => {
       this.business = res;
@@ -41,11 +43,16 @@ export class ListBusLineComponent implements OnInit {
         duration: 2000
       });
     });
-    
   }
 
+
+
   onChange(value){
-    this.lineService.getBusLines(value).toPromise()
+    debugger;
+    console.dir(value);
+
+    this.lineService.getBusLines(value)
+    .toPromise()
     .then(res => {
       this.lines = res;
 
@@ -57,5 +64,26 @@ export class ListBusLineComponent implements OnInit {
         duration: 2000
       });
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.lines.filter = filterValue.trim().toLowerCase();
+
+    if (this.lines.paginator) {
+      this.lines.paginator.firstPage();
+    }
+  }
+
+  add(){
+    this.router.navigate(['']);
+
+  }
+
+
+  edit(line: any){
+    console.dir(line);
+    //this.router.navigate(['/line/edit/' + line]);
+
   }
 }

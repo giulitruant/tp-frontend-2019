@@ -8,8 +8,8 @@ import { AppConfigService } from './app-config.service';
 export class BusLineService {
 
   private get apiUrl(){
-    return this.appConfig.getConfig().rootApiUrl;    
-    
+    return this.appConfig.getConfig().rootApiUrl;
+
   }
 
   constructor(
@@ -19,27 +19,27 @@ export class BusLineService {
 
 
   getBusLines(company: any){
-    this.http.get(this.appConfig + '/lineaColectivo/' + company);
+    return this.http.get(this.apiUrl + '/lineaColectivo/' + company);
 
   }
 
   getBusLine(line: any){
-    this.http.get(this.appConfig + '/lineaColectivo/' + line);
+    return this.http.get(this.apiUrl + '/lineaColectivo/' + line);
 
   }
 
   editBusLine(line: any){
-    this.http.put(this.appConfig + '/lineaColectivo', line);
+    return this.http.put(this.apiUrl + '/lineaColectivo', line);
 
   }
 
   addBusLine(line: any){
-    this.http.post(this.appConfig + '/lineaColectivo', line);
+    this.http.post(this.apiUrl + '/lineaColectivo', line);
 
   }
 
   deleteBusLine(line: any){
-    this.http.delete(this.appConfig + '/lineaColectivo/' + line);
+    return this.http.delete(this.apiUrl + '/lineaColectivo/' + line);
 
   }
 }
