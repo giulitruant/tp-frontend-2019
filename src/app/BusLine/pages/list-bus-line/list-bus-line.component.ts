@@ -15,8 +15,8 @@ import { CompanyService } from 'src/app/Service/company.service';
 export class ListBusLineComponent implements OnInit {
   business: any;
   form: FormGroup;
-  selected: FormControl;
-  lines: any;
+  selected = new FormControl();
+  lines: any = [];
 
   displayedColumns: string[] = ['idLineaColectivo', 'nombre', 'action'];
 
@@ -28,8 +28,9 @@ export class ListBusLineComponent implements OnInit {
   ) { }
 
   ngOnInit(){
+    debugger;
     this.form = new FormGroup({
-      selected: new FormControl('', Validators.required)
+      selected: this.selected
     });
 
     this.companyService.getBusiness().toPromise()
@@ -45,22 +46,27 @@ export class ListBusLineComponent implements OnInit {
     });
   }
 
-
-
-  onChange(value){
-    debugger;
-    console.dir(value);
+  onSubmit(){
+  let value = this.form.get('selected').value;
+  if(value == undefined){
+    value = '';
+  } 
 
     this.lineService.getBusLines(value)
     .toPromise()
-    .then(res => {
+    .then((res: []) => {
       this.lines = res;
-
+      if(this.lines == undefined || this.lines.length == 0){
+        this.snackBar.openFromComponent(InfoModalComponent, {
+          data: { message: 'No se pudieron recuperar las lineas de colectivos', actionType: MessageType.Success },
+          duration: 2000
+        });
+      }
     })
     .catch(err => {
       console.log(err);
       this.snackBar.openFromComponent(InfoModalComponent, {
-        data: { message: 'No se pudieron recuperar las lineas de colectivos', actionType: MessageType.Success },
+        data: { message: 'No se pudieron recuperar las lineas de colectivos', actionType: MessageType.Danger },
         duration: 2000
       });
     });

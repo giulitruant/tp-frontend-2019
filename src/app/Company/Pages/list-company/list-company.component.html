@@ -1,69 +1,65 @@
-  <mat-card>
+<div class="content-wrapper full-width">
+  <div class="content-table">
     <mat-toolbar class="table-title full-width" color="primary">
       {{ title }}
       <span class="fill-remaining-space"></span>
-      <button mat-icon-button (click)="add()" matTooltipPosition="right" matTooltip="agregar empresa">
-          <mat-icon>add_circle</mat-icon>
-      </button>
     </mat-toolbar>
 
+    <mat-card dynamicHeight class="mat-elevation-z8">
 
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" #input>
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="Cuit">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cuit </th>
-      <td mat-cell *matCellDef="let element"> {{element.Cuit}} </td>
-    </ng-container>
+        <ng-container matColumnDef="Cuit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cuit </th>
+          <td mat-cell *matCellDef="let element"> {{element.Cuit}} </td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="RazonSocial">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Razon Social </th>
-      <td mat-cell *matCellDef="let element"> {{element.RazonSocial}} </td>
-    </ng-container>
+        <ng-container matColumnDef="RazonSocial">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Razon Social </th>
+          <td mat-cell *matCellDef="let element"> {{element.RazonSocial}} </td>
+        </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="Telefono">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
-      <td mat-cell *matCellDef="let element"> {{element.Telefono}} </td>
-    </ng-container>
+        <ng-container matColumnDef="Telefono">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
+          <td mat-cell *matCellDef="let element"> {{element.Telefono}} </td>
+        </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-      <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
-    </ng-container>
+        <ng-container matColumnDef="Email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+        </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row;">
-          <!-- <button mat-icon-button type="button" style="color:red"
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>
+            <button mat-icon-button type="button" (click)="add()" matTooltip="agregar empresa">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row;">
+            <!-- <button mat-icon-button type="button" style="color:red"
           (click)="delete(row.Cuit)"
           matTooltip="eliminar empresa">
             <mat-icon aria-label="delete">highlight_off</mat-icon>
           </button> -->
-          <button mat-icon-button type="button"
-          (click)="edit(row.Cuit)"
-          matTooltip="editar empresa">
-            <mat-icon aria-label="select">forward</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
+            <button mat-icon-button type="button" (click)="edit(row.Cuit)" matTooltip="editar empresa">
+              <mat-icon aria-label="select">forward</mat-icon>
+            </button>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </mat-cell>
+        </ng-container>
 
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
-</mat-card>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    </mat-card>
+  </div>
+</div>

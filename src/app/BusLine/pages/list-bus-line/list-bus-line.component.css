@@ -5,8 +5,13 @@ table {
 .mat-form-field {
   font-size: 14px;
   width: 25%;
+  margin: 10px 10px 10px 10px;
 }
 
-td, th {
-  width: 25%;
+.btn{
+  margin: 10px 10px 10px 10px;
+}
+
+.content-wrapper{
+  margin: 20px 20px 20px 20px;
 }

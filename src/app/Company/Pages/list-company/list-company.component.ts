@@ -35,8 +35,13 @@ export class ListCompanyComponent{
     .then((res: any) => {
       this.dataSource = new MatTableDataSource(res);
     })
-    .catch(err => console.dir(err));
-
+    .catch(err => {
+      console.dir(err)
+      this.snackBar.openFromComponent(InfoModalComponent, {
+        data: { message: 'No se pudieron recuperar las lineas de colectivos', actionType: MessageType.Danger },
+        duration: 2000
+      });
+    });
    }
 
    applyFilter(event: Event) {
