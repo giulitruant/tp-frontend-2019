@@ -12,11 +12,11 @@
       </mat-menu>
 
     <mat-menu #driver="matMenu">
-      <button mat-menu-item routerLink="chofer/home">Consulta de Choferes</button>
+      <button mat-menu-item routerLink="chofer/home" [disabled]="true" >Consulta de Choferes</button>
     </mat-menu>
 
-    <mat-menu #busLine="matMenu">
-      <button mat-menu-item routerLink="line/home">Consulta Lineas de colectivo</button>
+    <mat-menu #busLine="matMenu" >
+      <button mat-menu-item routerLink="line/home" [disabled]="true">Consulta Lineas de colectivo</button>
     </mat-menu>
 
 </mat-toolbar>

@@ -38,6 +38,8 @@ export class AddCompanyComponent implements OnInit {
 
     }
 
+    debugger;
+
     this.service.addCompany(json)
     .toPromise()
     .then(res => {
@@ -58,7 +60,7 @@ export class AddCompanyComponent implements OnInit {
     })
     .catch(err => {
       this.snackBar.openFromComponent(InfoModalComponent, {
-        data: { message: 'Ocurrio un error al guardar la empresa.', actionType: MessageType.Danger },
+        data: { message: 'Empresa existente', actionType: MessageType.Danger },
         duration: 2000
       });
       this.router.navigate(['/company/home']);
