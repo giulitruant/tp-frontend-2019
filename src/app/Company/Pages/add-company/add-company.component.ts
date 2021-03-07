@@ -37,9 +37,7 @@ export class AddCompanyComponent implements OnInit {
       Email: company.Email
 
     }
-
-    debugger;
-
+    
     this.service.addCompany(json)
     .toPromise()
     .then(res => {
