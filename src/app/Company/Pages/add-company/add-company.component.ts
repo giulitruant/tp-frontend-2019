@@ -37,7 +37,7 @@ export class AddCompanyComponent implements OnInit {
       Email: company.Email
 
     }
-    
+
     this.service.addCompany(json)
     .toPromise()
     .then(res => {
@@ -62,6 +62,7 @@ export class AddCompanyComponent implements OnInit {
         duration: 2000
       });
       this.router.navigate(['/company/home']);
+      
     });
   }
 
